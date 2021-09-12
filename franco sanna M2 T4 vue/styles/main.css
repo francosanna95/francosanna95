@@ -1,0 +1,62 @@
+nav{border: black 2px solid;}
+/* .col
+{
+    border: 3px black solid;
+} */
+/* table{min-height: 50vh;} */
+nav{background-color:thistle}
+.tableSection
+{
+    height: 50vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+footer
+{
+    background-color: thistle;
+    height: 8vh;
+    margin-top: 2vh; 
+    border: black 2px solid;
+    justify-self: end;
+}
+footer > p
+{
+   padding-top: 2vh;
+   text-align: center;
+}
+.texto
+{
+    min-height: 25vh ;
+    /* padding-bottom: 2rem; */
+}
+#homeText
+{
+    height: 100%;
+}
+section{padding-top: 1rem;}
+#logo{width: 6rem;}
+#carta{width: 3rem;}
+.homeBody{min-height: 100vh;}
+#aguila
+{
+    margin-top: 5vh;
+    width: 30vw;}
+.textoHome{margin: 0;}
+.leerMas{min-height: 25vh;}
+.tablaGlance
+{
+    border-collapse: collapse;
+    border-radius: 1rem;
+    border-color: black;
+    border-style: double;
+}
+.check
+{
+    background-color: thistle;
+    border: black 2px solid;
+    display: flex;
+}
+.select{
+    background-color: thistle;
+    border: black 2px solid;
+    display: flex;}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/main.css">
+    <title>TGIF: Senate Loyalty</title>
+</head>
+
+<body>
+    <div class="container-fluid" id="app">
+        <header class="row">
+            <div class="col-2"> <img src="./assets/tgif_logo.jfif" alt="TGIF" id="logo"> </div>
+            <div class="col-2  offset-8"> <img src="./assets/carta.jpg" alt="mailto" id="carta"> <a
+                    href="mailto:info@tgif.net">info@tgif.net</a></div>
+            <nav>
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-expanded="false">Congress 113</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="houseData.html">House</a></li>
+                            <li><a class="dropdown-item" href="senateData.html">Senate</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-expanded="false">Attendance</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="houseAttendance.html">House</a></li>
+                            <li><a class="dropdown-item" href="senateAttendance.html">Senate</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-expanded="false">Party Loyalty</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="houseLoyalty.html">House Loyalty</a></li>
+                            <li><a class="dropdown-item" href="senateLoyalty.html">Senate Loyalty</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li> -->
+                </ul>
+            </nav>
+        </header>
+        
+        <section class="row" class="section1">
+            <div class="col-6">
+                <h2>Party Loyalty</h2>
+                <p class="texto">
+                    Those who consider themselves to be strong partisans, strong Democrats and strong Republicans
+                    respectively, tend to be the most faithful in voting for their party's nominee for office and
+                    legislation that backs their party's agenda.
+                </p>
+            </div>
+
+            <fieldset class="col-6">
+                <legend>Senate at glance</legend>
+                <table  class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-2">Party</th>
+                            <th class="col-2">N° of Representants</th>
+                            <th class="col-2">% Votes With Party</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Democrats</td>
+                            <td>{{statistics.democrats.length}}</td>
+                            <td>{{statistics.democratsVotesWithParty}} %</td>
+                        </tr>
+                        <tr>
+                            <td>Republicans</td>
+                            <td>{{statistics.republicans.length}}</td>
+                            <td>{{statistics.republicansVotesWithParty}} %</td>
+                        </tr>
+                        <tr>
+                            <td>Independants</td>
+                            <td>{{statistics.independants.length}}</td>
+                            <td> -</td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td>{{statistics.republicans.length + statistics.democrats.length + statistics.independants.length}}</td>
+                            <td>{{statistics.totalVotesWithParty}} %</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </section>
+
+        <section class="row">
+            <fieldset class="col-6">
+                <legend>Least Loyal (Bottom 10% of Party)</legend>
+            <table id="table"class="table table-success table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>N° of Votes w/Party</th>
+                        <th>% Party Votes</th>                       
+                    </tr>
+                </thead>
+                <tbody id="leastEngage">
+                    <tr v-for="miembro in statistics.lessLoyalt">
+                        <td> <a href=${miembro.url}>{{miembro.first_name}}</a> <a
+                            href=${miembro.url}>{{miembro.middle_name}}</a> <a
+                            href=${miembro.url}>{{miembro.last_name}}</a></td>
+                        <td> {{miembro.votosConParty}} </td>
+                        <td> {{miembro.votes_with_party_pct}} % </td>
+                    </tr>
+                </tbody>
+            </table>
+            </fieldset>
+       
+            <fieldset class="col-6">
+                <legend>Most Loyal (Top 10% of Party)</legend>
+                <table id="table"  class="table table-success table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>N° of Votes w/Party</th>
+                            <th>% Party Votes</th>                       
+                        </tr>
+                    </thead>
+                    <tbody id="mostEngage">
+                        <tr v-for="miembro in statistics.mostLoyalt">
+                            <td> <a href=${miembro.url}>{{miembro.first_name}}</a> <a
+                                href=${miembro.url}>{{miembro.middle_name}}</a> <a
+                                href=${miembro.url}>{{miembro.last_name}}</a></td>
+                            <td> {{miembro.votosConParty}} </td>
+                            <td> {{miembro.votes_with_party_pct}}% </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </section>
+        <footer>
+                <p>&copy; 2016 TGIF | All Rights Reserved</p>
+        </footer>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./data/data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+</body>
+</html>
